@@ -1,0 +1,35 @@
+Yo peeps
+
+<div class="container text-center">
+<h1 class="underlined">Welcome to Restaurant Review!</h1>
+
+<p class="container">
+
+<h3 class="home_info">Restaurant Review is a website used to allow users 
+from all over rate and review their favorite or least favorite restaurants. 
+Once logged in, you can add your own restaurant or review restaurants other users have added.
+
+</h3>
+
+<br><br>
+    <% if !logged_in? %>
+        <h3>Please log in or sign up to begin!</h3>     
+            <br>
+        <%= link_to "Sign Up", signup_path, class: "small_links"  %>
+            &nbsp; &nbsp; 
+        <%= link_to "Log In", login_path, class: "small_links" %>
+            <br><br>
+        <%= link_to 'Log in / Sign up with Google!', '/auth/google_oauth2', class: "small_links", method: :post %>
+    <% else %>
+        <strong><h2 class="underlined" style="color:#c27e96">You are already logged in!</h2></strong>
+        <br>
+        <h3 class="home_info">Click on "View all Restaurants" or "View all Reviews" up top to see what other users have already added</h3>
+
+        <h4>Or add a your own resturant:</h4>
+    <%= link_to '<button type="button" class="btn btn-outline-secondary">Add New Restaurant</button>'.html_safe, new_restaurant_path %>
+    <% end %>
+
+
+</p>
+
+</div>

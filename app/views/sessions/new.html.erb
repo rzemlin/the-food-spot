@@ -1,0 +1,24 @@
+<div class="container text-center">
+<h1 class="underlined">Log in:</h1>
+
+<p><%= flash[:error] %></p>
+<br>
+<%= form_for :user do |f| %>    <!-- can use a symbol instead of @ since we arent creating a new user   -->                                
+    <%= f.label :email, class: "form_label" %>       <!-- we are finding one that already exists - Dont pass in a blank user instance --> 
+    <%= f.email_field :email %> 
+    <br>
+    <br>
+    <%= f.label :password, class: "form_label" %>
+    <%= f.password_field :password %>
+    <br>
+    <br>
+    <%= f.submit "Log In" %>
+<% end %>
+<br>
+<br>
+<%= link_to 'Log in with Google!', '/auth/google_oauth2', method: :post %>
+<br>
+<br>
+<%= link_to "Sign Up", 'users/new'  %>
+
+</div>

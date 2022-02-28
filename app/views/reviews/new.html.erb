@@ -1,0 +1,8 @@
+<div class="container text-center">
+
+    <h2 class="underlined">Review:   <%= @restaurant.restaurant_name %></h2>
+
+    <%= render partial: 'layouts/error_messages', locals: {instance: @review} %>
+    <%= render 'form' %>
+
+</div>

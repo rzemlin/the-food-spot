@@ -1,0 +1,28 @@
+<h1 class="underlined">Reviews for <%= "#{@restaurant.restaurant_name}" %></h1>
+<br>
+
+<ol>
+<% @reviews.each do |review| %>
+<li>
+    <p class="attributes"><strong>Review from: </strong><%= review.user.name %></p> 
+    <p class="attributes"><strong>Rating: </strong><%= review.rating %></p>
+    <p class="attributes"><strong>Description: </strong><%= review.content %></p> 
+<br><br>
+<% if logged_in? %>
+    <% if review.user_id == current_user.id %>
+        <%= link_to "Edit", edit_review_path(review), class: "small_links" %>  or  
+        <%= link_to "Delete", review_path(review), method: :delete, data: {confirm: "Are you sure?" }, class: "small_links" %> <br>
+        <% end %>
+<% end %>   <br>
+    <% end %>
+</ul>
+<br><br>
+</li>
+<% if !logged_in? %>
+    <br>
+    <p>Make Sure you Log in or Sign up if you want to add a new review</p>
+    <%= link_to "Sign Up", signup_path  %>
+    <br>
+    <%= link_to "Log In", login_path %>
+<% end %>
+</div>

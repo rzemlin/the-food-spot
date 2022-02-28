@@ -1,0 +1,33 @@
+<div class="container text-center">
+<h1 class="underlined"><%= @restaurant.restaurant_name %></h1>
+
+<% if @restaurant.city != "" %>
+    <p class="attributes"><strong>City: </strong><%= @restaurant.city %></p>  
+<% end %>
+<% if @restaurant.address != "" %>
+    <p class="attributes"><strong>Address: </strong><%= @restaurant.address %></p>
+<% end %>
+<% if @restaurant.state != "" %>
+    <p class="attributes"><strong>State: </strong><%= @restaurant.state %></p>
+<% end %>
+
+<p class="attributes"><strong>Cuisine: </strong><%= @restaurant.cuisine.name %></p>
+<br>
+    <% if current_user == @restaurant.user_id %>
+        <%= link_to "Edit #{@restaurant.restaurant_name}", edit_restaurant_path(@restaurant), class: "small_links" %>
+        &nbsp; &nbsp; &nbsp; &nbsp;
+        <%= link_to "Delete #{@restaurant.restaurant_name}", restaurant_path(@restaurant), class: "small_links", method: :delete, data: {confirm: "Are you sure you want to delete #{@restaurant.restaurant_name}?" } %>
+    <% end %>
+<br><br><br>
+    <%= button_to "Review #{@restaurant.restaurant_name}",new_restaurant_review_path(@restaurant), :method => :get, class: "btn btn-outline-secondary" %>
+<br><br>
+    <% if @restaurant.reviews == [] %>
+        <h4>There are no reviews for <%= @restaurant.restaurant_name %> yet.</h4>
+    <% else %> 
+        <%= render '/reviews/topreviews' %> <br>
+        <%= button_to "All #{@restaurant.restaurant_name} Reviews", restaurant_reviews_path(@restaurant), :method => :get, class: "btn btn-outline-secondary" %>
+<!-- will render all the reviews for this restaurant from review partial first(3)-->
+    <% end %>
+<br><br>
+
+</div>	

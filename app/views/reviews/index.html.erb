@@ -1,0 +1,39 @@
+<div class="container text-center">
+
+<% if @reviews == [] %>
+    <h2>Sorry there are no reviews yet.</h2>
+<% else %>
+    <% if params[:restaurant_id] %>
+        <%= render '/reviews/restaurantreviews' %>
+    <% else %>
+
+    <h1 class="underlined"> All Reviews</h1> <br><br>
+    
+    <% @reviews.each do |review| %>
+
+<h4 class="rest_name"> <%= link_to "#{review.restaurant.restaurant_name} Review:", restaurant_path(review.restaurant), class: "rest_name" %> </h4>
+    
+    <p class="attributes"><strong>Reviewed by: </strong><%= review.user.name %></p> 
+    <p class="attributes"><strong>Description: </strong><%= review.content %></p> 
+    <p class="attributes"><strong>Rating: </strong><%= review.rating %></p>
+
+    <% if authorized(review, current_user) %>
+        <%= link_to "Edit", edit_review_path(review), class: "small_links" %>  or  
+        <%= link_to "Delete", review_path(review), method: :delete, data: {confirm: "Are you sure?" }, class: "small_links" %> <br>
+    <% end %>
+<br><br>
+<% end %>   
+</ul>
+
+<br><br>
+        <% if !logged_in? %>
+            <br>
+            <p>Make Sure you Log in or Sign up if you want to add a new review</p>
+            <%= link_to "Sign Up", signup_path  %>
+            <br>
+            <%= link_to "Log In", login_path %>
+        <% end %>
+    <br>
+<% end %>
+<% end %>
+</div>

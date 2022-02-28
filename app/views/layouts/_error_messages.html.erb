@@ -1,0 +1,18 @@
+<div class="container text-center">
+<% if instance.errors.any? %>
+  <div id="error_explanation" >
+
+  <% if instance.errors.full_messages.count > 1 %>
+        <h4>Sorry there were some errors:</h4>
+      <% else %>
+        <h4>Sorry there was an error:</h4>
+      <% end %>
+      
+    <% instance.errors.full_messages.each do |message| %>
+        <p class="error"><%= message %></p>
+      <% end %>
+
+  </div>
+<% end %>
+<br>
+</div>

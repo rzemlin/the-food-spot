@@ -1,0 +1,21 @@
+<div class="container text-center">
+<h2><%= link_to "Review for #{@review.restaurant.restaurant_name}", restaurant_path(@restaurant), class:"rest_name" %></h2>
+<p class="attributes"><strong>Reviewed By:</strong> <%= @review.user.name %></p>
+<br>
+<h2 class="attributes"><strong>Rating (1-5): </strong><%= @review.rating %>
+<h2 class="attributes"><strong>Description: </strong><%= @review.content %></h2>
+
+<br>
+<br>
+    <% if current_user == @review.user_id %>
+        <%= link_to "Edit Review", edit_review_path(@review), class: "small_links" %>
+        <br>
+        <%= link_to "Delete Review", review_path(@review), class: "small_links", method: 'delete', data: {confirm: "Are you sure you want to delete this review?"} %>
+        <br>
+    <% end %>
+<br>
+<br>
+<br>
+<br>
+    <%= button_to "All #{@review.restaurant.restaurant_name} Reviews", restaurant_reviews_path(@restaurant), :method => :get, class: "btn btn-outline-secondary" %>
+ </div>

@@ -1,0 +1,17 @@
+<h1 class="underlined">Top Reviews for <%= @restaurant.restaurant_name %></h1>
+<br>
+
+<% @reviews.each do |review| %>
+    <p class="attributes"><strong>Description: </strong><%= review.content %></p>
+    <p class="attributes"><strong>Rating: </strong><%= review.rating %></p>
+    <p class="attributes"><strong>Posted by: </strong><%= review.user.name %></p> 
+
+<% if logged_in? %>
+    <% if review.user_id == current_user.id %>
+        <%= link_to "Edit", edit_review_path(review), class: "small_links" %> &nbsp; &nbsp; 
+        <%= link_to "Delete", review_path(review), method: :delete, data: {confirm: "Are you sure?" }, class: "small_links" %> <br>
+    <% end %>
+<% end %>
+    <br><br>
+</ul>
+<% end %>

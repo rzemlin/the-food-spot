@@ -1,0 +1,26 @@
+<div class="container text-center">
+
+<% if @restaurants == [] %>
+    <h2>Sorry there are no restaurants yet.</h2>
+<% else %>
+
+    <h1 class="underlined">All the Restaurants</h1> <br>
+
+    <% @restaurants.each do |restaurant| %>
+    
+   <%= link_to restaurant.restaurant_name, restaurant_path(restaurant), class:"rest_name"%>
+        <p class="attributes"><strong>Cuisine: </strong><%= restaurant.cuisine.name %></p>
+        <p class="attributes"><strong>City: </strong><%= restaurant.city %></p>
+    <br>
+
+    <%= link_to "Review #{restaurant.restaurant_name}", new_restaurant_review_path(restaurant), class: "small_links" %>
+    <br>
+    
+        <%= link_to "Edit", edit_restaurant_path(restaurant), class: "small_links" %>    or    
+        <%= link_to "Delete", restaurant_path(restaurant), class: "small_links", method: :delete, data: {confirm: "Are you sure you want to delete #{restaurant.restaurant_name}?" } %>
+
+<br><br><br>
+<% end %>
+    <%= button_to "Add New Restaurant", new_restaurant_path, :method => :get, class: "btn btn-outline-secondary" %>
+<% end %>
+</div>
