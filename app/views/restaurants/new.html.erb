@@ -2,14 +2,11 @@
 <% if !logged_in? %>
     <br>
     <div class="container">
-    <h4>Make Sure you Log in or Sign up if you want to add a restaurants</h4>
-    <%= link_to "Sign Up", signup_path  %>
-    <br>
-    <%= link_to "Log In", login_path %>
+    <h4>Please <%= link_to "Sign Up", signup_path  %> or <%= link_to "Log In", login_path %> to add a new restaurant</h4>
     </div>
 <% else %>
 
-<h1 class="underlined">Add a new Restaurant: </h1>
+<h1 class="button">Add a new Restaurant: </h1>
 <br>
 
 <%= render partial: 'layouts/error_messages', locals: {instance: @restaurant} %>
