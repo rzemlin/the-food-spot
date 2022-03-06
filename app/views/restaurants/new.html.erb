@@ -1,4 +1,4 @@
-<div class="container text-center">
+
 <% if !logged_in? %>
     <br>
     <div class="container">
@@ -12,4 +12,3 @@
 <%= render partial: 'layouts/error_messages', locals: {instance: @restaurant} %>
 <%= render 'form' %>
 <% end %>
-</div>
