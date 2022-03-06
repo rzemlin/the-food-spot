@@ -1,11 +1,9 @@
 
   <% @restaurants.each do |restaurant| %>
     
-   <%= link_to restaurant.restaurant_name, restaurant_path(restaurant), class:"restaurant_name"%>
+        <p class="attributes"><strong>Name: </strong><%= restaurant.restaurant_name %></p>
         <p class="attributes"><strong>Cuisine: </strong><%= restaurant.cuisine.name %></p>
         <p class="attributes"><strong>City: </strong><%= restaurant.city %></p>
-    
-    <br>
        <%= link_to "Review #{restaurant.restaurant_name}", new_restaurant_review_path(restaurant), class: "small_links" %>
     <br>
       <% if authorized(restaurant, current_user) %>
