@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   
   get 'auth/:provider/callback', to: 'sessions#google'
   get 'auth/failure', to: redirect('/')
-  
-  delete '/logout', to: "sessions#destroy"
+  get '/logout', to: "sessions#destroy"
+  get '/auth/github/callback' => 'sessions#github'
   
   get '/restaurants/ordered', to: "restaurants#ordered"
 

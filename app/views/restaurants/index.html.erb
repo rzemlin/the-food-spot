@@ -1,24 +1,17 @@
 
-    <table class="table">
-      <th>name</th>
-      <th>city</th>
-      <th>cuisine</th>
-      <tbody
-    <% @restaurants.each do |restaurant| %>
+  <% @restaurants.each do |restaurant| %>
     
-   <%= link_to restaurant.restaurant_name, restaurant_path(restaurant), class:"rest_name"%>
+   <%= link_to restaurant.restaurant_name, restaurant_path(restaurant), class:"restaurant_name"%>
         <p class="attributes"><strong>Cuisine: </strong><%= restaurant.cuisine.name %></p>
         <p class="attributes"><strong>City: </strong><%= restaurant.city %></p>
-    </tbody>
-    </table>
-    <br>
-
-    <%= link_to "Review #{restaurant.restaurant_name}", new_restaurant_review_path(restaurant), class: "small_links" %>
-    <br>
     
+    <br>
+       <%= link_to "Review #{restaurant.restaurant_name}", new_restaurant_review_path(restaurant), class: "small_links" %>
+    <br>
+      <% if authorized(restaurant, current_user) %>
         <%= link_to "Edit", edit_restaurant_path(restaurant), class: "small_links" %>    or    
         <%= link_to "Delete", restaurant_path(restaurant), class: "small_links", method: :delete, data: {confirm: "Are you sure you want to delete #{restaurant.restaurant_name}?" } %>
-
+      <% end %>
 <br><br><br>
 <% end %>
     <%= button_to "Add New Restaurant", new_restaurant_path, :method => :get, class: "btn btn-outline-secondary" %>

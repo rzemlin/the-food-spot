@@ -10,12 +10,11 @@
             &nbsp; &nbsp; 
         <%= link_to "Log In", login_path, class: "small_links" %>
             <br><br>
-        <%= link_to 'Log in / Sign up with Google!', '/auth/google_oauth2', class: "small_links", method: :post %>
+        <%= link_to('Log in with GitHub!', '/auth/github', method: :post) %>
     <% else %>
         <strong><h2 class="underlined" style="color:#c27e96">You are already logged in!</h2></strong>
         <br>
-        <h3 class="home_info">Click on "View all Restaurants" or "View all Reviews" up top to see what other users have already added</h3>
-
+        
         <h4>Or add a your own resturant:</h4>
     <%= link_to '<button type="button" class="btn btn-outline-secondary">Add New Restaurant</button>'.html_safe, new_restaurant_path %>
     <% end %>
