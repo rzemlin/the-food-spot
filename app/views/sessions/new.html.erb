@@ -3,8 +3,8 @@
 
 <p><%= flash[:error] %></p>
 <br>
-<%= form_for :user do |f| %>    <!-- can use a symbol instead of @ since we arent creating a new user   -->                                
-    <%= f.label :email, class: "form_label" %>       <!-- we are finding one that already exists - Dont pass in a blank user instance --> 
+<%= form_for :user do |f| %>                                   
+    <%= f.label :email, class: "form_label" %>       
     <%= f.email_field :email %> 
     <br>
     <br>
@@ -16,7 +16,7 @@
 <% end %>
 <br>
 <br>
-<%= link_to 'Log in with Google!', '/auth/google_oauth2', method: :post %>
+<%= link_to 'Sign Up with Google!', '/auth/google_oauth2', method: :post %>
 <br>
 <br>
 <%= link_to "Sign Up", 'users/new'  %>

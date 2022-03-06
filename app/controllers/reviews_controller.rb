@@ -3,10 +3,10 @@ class ReviewsController < ApplicationController
    
 
     def index
-        if params[:restaurant_id]  #if nested, only show reviews for that restaurant
+        if params[:restaurant_id]
             @restaurant = Restaurant.find_by_id(params[:restaurant_id])
             @reviews = @restaurant.reviews
-        else    #else just show all the reviews in the db
+        else
             @reviews = Review.all
         end
     end
@@ -19,7 +19,6 @@ class ReviewsController < ApplicationController
     def new
         @restaurant = Restaurant.find_by_id(params[:restaurant_id])
         @review = @restaurant.reviews.build
-            #builds the review on top/ for that restaurant (with its ID)
     end
 
     def create
@@ -59,7 +58,6 @@ class ReviewsController < ApplicationController
     def review_params
         params.require(:review).permit(:rating, :content, :restaurant_id)
     end
-
     
 end
 

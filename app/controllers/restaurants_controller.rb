@@ -12,11 +12,6 @@ class RestaurantsController < ApplicationController
         @reviews = @restaurant.reviews
     end
 
-    def ordered
-        @restaurants = Restaurant.all.sort_restaurants
-        render :index
-    end
-
     def new
         @restaurant = Restaurant.new
     end
@@ -25,7 +20,7 @@ class RestaurantsController < ApplicationController
         @cuisines = ["Mexican", "Asian", "Italian", "American", "Seafood", "Other"]
         @restaurant = Restaurant.find_by(restaurant_name: params[:restaurant][:restaurant_name])
             if @restaurant
-                flash[:message] = "A Restaurant with this name already exists, you can either review it or add one with a different name."
+                flash[:message] = "This restaurant already exists. Please add a different"
                 redirect_to restaurants_path
             else
                 @restaurant = Restaurant.new(restaurant_params)
@@ -41,7 +36,7 @@ class RestaurantsController < ApplicationController
 
 
     def edit
-        #already finds the restaurant with before action
+    
     end
 
     def update

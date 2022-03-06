@@ -7,14 +7,13 @@ class SessionsController < ApplicationController
     def new
     end
 
-    def create     #does the user exist in our system
+    def create  
         if (params[:user][:email]) == "" || (params[:user][:password]) == ""
             flash[:message] = "Invalid email or password, please try again."
             render '/sessions/new'
         else
             @user = User.find_by(email: params[:user][:email])
             if @user && @user.authenticate(params[:user][:password ])
-                        #compares your password to the hashed version in password_digest column
                 session[:user_id] = @user.id
                 redirect_to user_path(@user)
             else
