@@ -4,11 +4,10 @@ Rails.application.routes.draw do
   get '/login', to: "sessions#new"
   post 'login', to: "sessions#create"
   get "/signup", to: "users#new"
-  
-  get 'auth/:provider/callback', to: 'sessions#google'
+  #get '/auth/github/callback', to: 'sessions#github'
+  get 'auth/:provider/callback', to: 'sessions#github_omniauth'
   get 'auth/failure', to: redirect('/')
   get '/logout', to: "sessions#destroy"
-  get '/auth/github/callback' => 'sessions#github'
   
   get '/restaurants/ordered', to: "restaurants#ordered"
   get 'highest_rated', to: 'reviews#highest_rated'

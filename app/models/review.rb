@@ -5,5 +5,5 @@ class Review < ApplicationRecord
     validates :content, :rating, presence: true
 
     scope :highest_rated, -> {where("rating > 4") }
-  
+    
   end

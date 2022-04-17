@@ -24,12 +24,14 @@ gem 'jbuilder', '~> 2.7'
 gem 'simple_form'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
-gem 'omniauth-oauth2', '1.3.1'
-gem 'omniauth' 
+gem 'omniauth'
+gem 'omniauth-oauth2'
 gem 'omniauth-github' 
 gem 'omniauth-rails_csrf_protection'
+gem 'omniauth-facebook', '~> 9.0'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
+
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

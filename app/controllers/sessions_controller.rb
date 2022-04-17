@@ -7,13 +7,14 @@ class SessionsController < ApplicationController
     def new
     end
 
-    def create  
-        if (params[:user][:email]) == ""
+    def create     #does the user exist in our system
+        if (params[:user][:email]) == "" || (params[:user][:password]) == ""
             flash[:message] = "Invalid email or password, please try again."
             render '/sessions/new'
         else
             @user = User.find_by(email: params[:user][:email])
-            if @user && @user.authenticate(params[:user][:password])
+            if @user && @user.authenticate(params[:user][:password ])
+                        #compares your password to the hashed version in password_digest column
                 session[:user_id] = @user.id
                 redirect_to user_path(@user)
             else
@@ -22,31 +23,23 @@ class SessionsController < ApplicationController
             end
         end
     end
-
-    
-    def destroy
-        session.delete(:user_id)
-        redirect_to "/"
-    end
-    
-    def github
-            @user =
-              User.find_or_create_by(uid: auth['uid']) do |u|
-                u.name = auth['info']['name']
-                u.email = auth['info']['email']
-                u.image = auth['info']['image']
-              end
         
+        def destroy
+            session.delete(:user_id)
+            redirect_to "/"
+        end
+        
+        def github_omniauth
+            @user = User.from_omniauth(auth)
             session[:user_id] = @user.id
-        
-            render user_path(@user)
-    end
-        
+            #binding.pry
+            redirect_to 'users/show'
+        end
 
-    private
 
-    def auth
+   private
+    
+      def auth
         request.env['omniauth.auth']
-    end
-
+      end
 end
