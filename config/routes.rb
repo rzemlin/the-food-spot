@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get '/auth/github/callback' => 'sessions#github'
   
   get '/restaurants/ordered', to: "restaurants#ordered"
+  get 'highest_rated', to: 'reviews#highest_rated'
 
   resources :reviews
   resources :restaurants do 

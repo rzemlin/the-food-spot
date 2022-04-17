@@ -1,0 +1,11 @@
+<h3>Top Rated Restaurants</h3>
+<br>
+
+
+<% @reviews.each do |review| %>
+    <p class="attributes"><strong>Name: </strong><%= review.restaurant_id %></p> 
+    <p class="attributes"><strong>Description: </strong><%= review.content %></p>
+    <p class="attributes"><strong>Rating: </strong><%= review.rating %></p>
+    <br>
+<% end %>
+<%= button_to "Back", root_path, :method => :get, class: "btn btn-outline-secondary" %>

@@ -1,6 +1,5 @@
 class ReviewsController < ApplicationController
     before_action :require_login  , except: [:index, :show]
-   
 
     def index
         if params[:restaurant_id]
@@ -52,6 +51,13 @@ class ReviewsController < ApplicationController
         @review.destroy
         redirect_to reviews_path
     end
+
+    def highest_rated
+        @reviews = Review.highest_rated
+        
+    end
+
+
 
     private
 

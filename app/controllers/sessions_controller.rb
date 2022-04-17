@@ -8,12 +8,12 @@ class SessionsController < ApplicationController
     end
 
     def create  
-        if (params[:user][:email]) == "" || (params[:user][:password]) == ""
+        if (params[:user][:email]) == ""
             flash[:message] = "Invalid email or password, please try again."
             render '/sessions/new'
         else
             @user = User.find_by(email: params[:user][:email])
-            if @user && @user.authenticate(params[:user][:password ])
+            if @user && @user.authenticate(params[:user][:password])
                 session[:user_id] = @user.id
                 redirect_to user_path(@user)
             else
