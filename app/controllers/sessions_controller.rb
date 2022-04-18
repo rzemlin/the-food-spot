@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     def create     #does the user exist in our system
         if (params[:user][:email]) == "" || (params[:user][:password]) == ""
             flash[:message] = "Invalid email or password, please try again."
-            render '/sessions/new'
+            redirect_to login_path
         else
             @user = User.find_by(email: params[:user][:email])
             if @user && @user.authenticate(params[:user][:password ])
